@@ -1,8 +1,10 @@
 package udemy_workspace;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 
 public class Handling_Java_Alert {
 
@@ -10,7 +12,6 @@ public class Handling_Java_Alert {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://rahulshettyacademy.com/AutomationPractice/");
-		
 		
 		driver.findElement(By.id("name")).sendKeys("Muxe Ndlovu");
 		driver.findElement(By.id("alertbtn")).click();

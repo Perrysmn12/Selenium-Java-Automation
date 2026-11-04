@@ -1,4 +1,4 @@
-package udemy_workspace;
+package udemy_assignments;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Assignmrnt_3_Add_To_Cart {
 
@@ -16,20 +18,23 @@ public class Assignmrnt_3_Add_To_Cart {
 		WebDriver driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("https://rahulshettyacademy.com/seleniumPractise/#/");
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		// driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
 		// A normal Array
 		String[] items = { "Brocolli", "Cucumber", "Beetroot" };
 		addItems(driver, items);
 		driver.findElement(By.cssSelector("img[alt='Cart']")).click();
 		driver.findElement(By.xpath("//div[@class='cart-preview active'] //div[@class='action-block']/button")).click();
-		//driver.findElement(By.xpath("//*[text()='PROCEED TO CHECKOUT']")).click();
-		//driver.findElement(By.xpath("//button[contains(text(),'PROCEED TO CHECKOUT')]")).click();
+		// driver.findElement(By.xpath("//*[text()='PROCEED TO CHECKOUT']")).click();
+		// driver.findElement(By.xpath("//button[contains(text(),'PROCEED TO
+		// CHECKOUT')]")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".promoCode")));
 		driver.findElement(By.cssSelector("input.promoCode")).sendKeys("rahulshettyacademy");
-		
+
 		driver.findElement(By.cssSelector("button.promoBtn")).click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".promoInfo")));
 		System.out.println(driver.findElement(By.className("promoInfo")).getText());
-		
 
 	}
 
